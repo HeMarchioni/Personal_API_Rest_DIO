@@ -6,18 +6,30 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Person {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Gerar o valor automaticamente do id
     private Long cd_Person;
-    private String nm_FirstName,nm_LastName,cd_Cpf;
+
+    @Column(nullable = false)
+    private String nm_FirstName,nm_LastName;
+
+    @Column(nullable = false, unique = true)  // notnull e unique
+    private String cd_Cpf;
+
     private LocalDate dt_BirthDate;
-    private List<Phone> cd_Phones;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})  // -> campo com relacionamento com outra tabela ele ira criar a tabela de relacionamento (OneTomany 1 para muitos, fetch lazy para performace, casacade para a hora que for cadastrar ja a persona ja cadastrar o telefone.
+    private List<Phone> phones;
 
 }
