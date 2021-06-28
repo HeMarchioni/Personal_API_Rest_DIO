@@ -3,6 +3,7 @@ package one.digitalInovation.personaApi.model.person;
 
 import one.digitalInovation.personaApi.model.dto.MessageResponseDTO;
 import one.digitalInovation.personaApi.model.dto.request.PersonDTO;
+import one.digitalInovation.personaApi.model.dto.request.PhoneDTO;
 import one.digitalInovation.personaApi.model.mapper.PersonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class PersonService {
 
 
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
 
@@ -24,7 +25,6 @@ public class PersonService {
 
     public MessageResponseDTO createPerson(PersonDTO personDTO) {
         Person personToSave = personMapper.toModel(personDTO);
-
 
         Person savedPerson = personRepository.save(personToSave);
         return MessageResponseDTO

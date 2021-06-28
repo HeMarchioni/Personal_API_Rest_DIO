@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,10 @@ public class Person {
     private Long cd_Person;
 
     @Column(nullable = false)
-    private String nm_FirstName,nm_LastName;
+    private String nm_FirstName;
+
+    @Column(nullable = false)
+    private String nm_LastName;
 
     @Column(nullable = false, unique = true)  // notnull e unique
     private String cd_Cpf;
@@ -30,6 +34,6 @@ public class Person {
     private LocalDate dt_BirthDate;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})  // -> campo com relacionamento com outra tabela ele ira criar a tabela de relacionamento (OneTomany 1 para muitos, fetch lazy para performace, casacade para a hora que for cadastrar ja a persona ja cadastrar o telefone.
-    private List<Phone> phones;
+    private List<Phone> phones = new ArrayList<>();
 
 }

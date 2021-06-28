@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/people")
 public class PersonController {
 
-    private PersonService personService;
+    private final PersonService personService;
 
     @Autowired
     public PersonController(PersonService personService) {
@@ -26,7 +26,7 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)   // -> padronizar a resposta caso sucesso 201 falha 404
-    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO) {
+    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO) { //@Valid chama a validação criada na classe
         return personService.createPerson(personDTO);
     }
 
