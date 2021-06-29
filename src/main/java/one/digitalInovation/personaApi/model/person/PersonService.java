@@ -1,6 +1,7 @@
 package one.digitalInovation.personaApi.model.person;
 
 
+import one.digitalInovation.personaApi.exception.PersonNotFoundException;
 import one.digitalInovation.personaApi.model.dto.MessageResponseDTO;
 import one.digitalInovation.personaApi.model.dto.request.PersonDTO;
 import one.digitalInovation.personaApi.model.dto.request.PhoneDTO;
@@ -40,5 +41,12 @@ public class PersonService {
     public List<PersonDTO> listAll() {
         List<Person> allPeople =personRepository.findAll();
         return allPeople.stream().map(personMapper::toDTO).collect(Collectors.toList());
+    }
+
+    public PersonDTO findById(Long cd_person) throws PersonNotFoundException {
+       var person = personRepository.findById(cd_person)
+               .orElseThrow(()-> new  PersonNotFoundException(cd_person) );
+
+       return personMapper.toDTO(person);
     }
 }

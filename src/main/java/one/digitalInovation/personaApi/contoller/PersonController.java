@@ -1,6 +1,7 @@
 package one.digitalInovation.personaApi.contoller;
 
 
+import one.digitalInovation.personaApi.exception.PersonNotFoundException;
 import one.digitalInovation.personaApi.model.dto.MessageResponseDTO;
 import one.digitalInovation.personaApi.model.dto.request.PersonDTO;
 import one.digitalInovation.personaApi.model.person.Person;
@@ -36,5 +37,10 @@ public class PersonController {
        return personService.listAll();
     }
 
+    @GetMapping("/{cd_Person}")
+    public PersonDTO findById(@PathVariable Long cd_Person) throws PersonNotFoundException {
+        return personService.findById(cd_Person);
+
+    }
 
 }
