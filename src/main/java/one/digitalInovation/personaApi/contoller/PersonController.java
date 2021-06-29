@@ -43,4 +43,11 @@ public class PersonController {
 
     }
 
+    @DeleteMapping("/{cd_Person}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long cd_Person) throws PersonNotFoundException {
+        personService.delete(cd_Person);
+    }
+
+
 }

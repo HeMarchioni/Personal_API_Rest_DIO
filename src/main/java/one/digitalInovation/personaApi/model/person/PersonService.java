@@ -44,9 +44,24 @@ public class PersonService {
     }
 
     public PersonDTO findById(Long cd_person) throws PersonNotFoundException {
-       var person = personRepository.findById(cd_person)
-               .orElseThrow(()-> new  PersonNotFoundException(cd_person) );
+       var person = verifyIfExists(cd_person);
 
        return personMapper.toDTO(person);
     }
+
+
+    public void delete(Long cd_person) throws PersonNotFoundException {
+        var person = verifyIfExists(cd_person);
+
+        personRepository.deleteById(cd_person);
+
+    }
+
+
+    private Person verifyIfExists(Long cd_person) throws PersonNotFoundException {  // -> method que verifica se a no banco esse person se tiver retorna o person se nao retorna uma excessão
+        return personRepository.findById(cd_person)
+                .orElseThrow(()-> new PersonNotFoundException(cd_person) );
+    }
+
+
 }
