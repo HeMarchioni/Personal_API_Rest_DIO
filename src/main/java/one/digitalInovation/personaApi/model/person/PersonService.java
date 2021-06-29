@@ -4,7 +4,6 @@ package one.digitalInovation.personaApi.model.person;
 import one.digitalInovation.personaApi.exception.PersonNotFoundException;
 import one.digitalInovation.personaApi.model.dto.MessageResponseDTO;
 import one.digitalInovation.personaApi.model.dto.request.PersonDTO;
-import one.digitalInovation.personaApi.model.dto.request.PhoneDTO;
 import one.digitalInovation.personaApi.model.mapper.PersonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,10 +30,7 @@ public class PersonService {
         Person personToSave = personMapper.toModel(personDTO);
 
         Person savedPerson = personRepository.save(personToSave);
-        return MessageResponseDTO
-                .builder() // -> abrindo um construtor
-                .message("Created person with ID"+ savedPerson.getCd_Person()) // -> Preenchendo a Variável que tem na Classe
-                .build(); // -> fecha
+        return createMessageResponse(savedPerson.getCd_Person(), "Created person with ID"); // -> mensagem enviada Sucesso
     }
 
 
@@ -58,10 +54,29 @@ public class PersonService {
     }
 
 
+
+    public MessageResponseDTO updateById(Long cd_person, PersonDTO personDTO) throws PersonNotFoundException {
+       verifyIfExists(cd_person);
+
+        Person personToUpdate = personMapper.toModel(personDTO);
+
+        Person updatePerson = personRepository.save(personToUpdate);
+        return createMessageResponse(updatePerson.getCd_Person() , "Update person with ID"); // -> mensagem Sucesso
+    }
+
+
+
+
     private Person verifyIfExists(Long cd_person) throws PersonNotFoundException {  // -> method que verifica se a no banco esse person se tiver retorna o person se nao retorna uma excessão
         return personRepository.findById(cd_person)
                 .orElseThrow(()-> new PersonNotFoundException(cd_person) );
     }
 
 
+    private MessageResponseDTO createMessageResponse(Long cd_Person ,  String message) {
+        return MessageResponseDTO
+                .builder() // -> abrindo um construtor
+                .message(message + cd_Person) // -> Preenchendo a Variável que tem na Classe
+                .build();
+    }
 }
