@@ -1,6 +1,7 @@
 package one.digitalInovation.personaApi.model.person;
 
 
+import lombok.AllArgsConstructor;
 import one.digitalInovation.personaApi.exception.PersonNotFoundException;
 import one.digitalInovation.personaApi.model.dto.MessageResponseDTO;
 import one.digitalInovation.personaApi.model.dto.request.PersonDTO;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))  // -> inicializa os construtores das dependências atributos que ira usar (lombok)
 public class PersonService {
 
 
@@ -20,10 +22,10 @@ public class PersonService {
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
 
 
-    @Autowired
+   /* @Autowired
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
-    }
+    }*/
 
 
     public MessageResponseDTO createPerson(PersonDTO personDTO) {

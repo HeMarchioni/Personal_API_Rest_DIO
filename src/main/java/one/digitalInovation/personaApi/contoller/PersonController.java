@@ -1,6 +1,7 @@
 package one.digitalInovation.personaApi.contoller;
 
 
+import lombok.AllArgsConstructor;
 import one.digitalInovation.personaApi.exception.PersonNotFoundException;
 import one.digitalInovation.personaApi.model.dto.MessageResponseDTO;
 import one.digitalInovation.personaApi.model.dto.request.PersonDTO;
@@ -16,14 +17,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
+@AllArgsConstructor(onConstructor = @__(@Autowired))  // -> inicializa os construtores das dependências que ira usar (lombok)
 public class PersonController {
 
     private final PersonService personService;
 
-    @Autowired
+   /* @Autowired    -> antes iniciava 1 a 1.
     public PersonController(PersonService personService) {
         this.personService = personService;
-    }
+    }*/
 
 
     @PostMapping
