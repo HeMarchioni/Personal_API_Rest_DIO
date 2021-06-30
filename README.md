@@ -19,7 +19,29 @@ Para executar o projeto no terminal, digite o seguinte comando:
 mvn spring-boot:run 
 ```
 
-Após executar o comando acima, basta apenas abrir o seguinte endereço e visualizar a execução do projeto:
+Enviar dados para a API, atravez de uma metodo POST para:
+```
+http://localhost:8080/api/v1/people
+```
+com o sequinte padrão:
+
+```
+{
+  "nm_FirstName": "Ronaldo",
+  "nm_LastName": "Lima",
+  "cd_Cpf":"581.556.080-42",
+  "dt_BirthDate":"23-03-1988" ,
+  "phones": [
+    {
+    "type": "MOBILE",
+    "number": "(11)998516257"
+    }
+  ]
+}
+```
+
+
+Após executar o comando acima, basta apenas abrir o seguinte endereço e visualizar a execução do projeto mostrando que ira retornar os Usuarios Cadastrados:
 
 ```
 http://localhost:8080/api/v1/people
@@ -34,4 +56,9 @@ São necessários os seguintes pré-requisitos para a execução do projeto dese
 * Muita vontade de aprender e compartilhar conhecimento :)
 
 
+<h3> Link da aplicação na nuvem para teste </h3>
+
+```
+https://people-api-digital-inovation.herokuapp.com/api/v1/people
+```
 
