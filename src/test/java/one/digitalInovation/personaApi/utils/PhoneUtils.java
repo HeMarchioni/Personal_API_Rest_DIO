@@ -2,7 +2,7 @@ package one.digitalInovation.personaApi.utils;
 
 import one.digitalInovation.personaApi.model.dto.request.PhoneDTO;
 import one.digitalInovation.personaApi.model.enums.PhoneType;
-import one.digitalInovation.personaApi.model.person.Phone;
+import one.digitalInovation.personaApi.model.entity.phone.Phone;
 
 public class PhoneUtils {
 

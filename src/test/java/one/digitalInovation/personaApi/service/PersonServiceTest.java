@@ -3,9 +3,9 @@ package one.digitalInovation.personaApi.service;
 
 import one.digitalInovation.personaApi.model.dto.MessageResponseDTO;
 import one.digitalInovation.personaApi.model.dto.request.PersonDTO;
-import one.digitalInovation.personaApi.model.person.Person;
-import one.digitalInovation.personaApi.model.person.PersonRepository;
-import one.digitalInovation.personaApi.model.person.PersonService;
+import one.digitalInovation.personaApi.model.entity.person.Person;
+import one.digitalInovation.personaApi.model.entity.person.PersonRepository;
+import one.digitalInovation.personaApi.model.entity.person.PersonService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

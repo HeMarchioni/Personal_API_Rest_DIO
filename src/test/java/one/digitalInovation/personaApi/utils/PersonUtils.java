@@ -2,7 +2,7 @@ package one.digitalInovation.personaApi.utils;
 
 
 import one.digitalInovation.personaApi.model.dto.request.PersonDTO;
-import one.digitalInovation.personaApi.model.person.Person;
+import one.digitalInovation.personaApi.model.entity.person.Person;
 
 import java.time.LocalDate;
 import java.util.Collections;
